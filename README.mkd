@@ -1,0 +1,81 @@
+# Tor Browser Installer
+
+This script will install the latest version of the Tor Browser Bundle, so it can
+be used like any other desktop application, that is, without the need to run it
+from the command line. It _should_ work on most GNU distributions.
+
+## Features
+
+- Works for both i686 and x86\_64 systems.
+- GPG signature verification.
+- Uninstall feature.
+- Multi-language support.
+- System-wide installation, so it works for multiple users.
+
+## Requirements
+
+The script has three dependencies (it's highly likely that these are already
+installed on your system):
+
+- [Sudo](http://www.sudo.ws/sudo/).
+- [cURL](http://curl.haxx.se/).
+- [GnuPG](http://www.gnupg.org/) (optional).
+
+## Download
+
+You can clone the repository:
+
+    $ git clone git://github.com/alpha-omega/tor-browser-installer.git
+
+Or download the
+[tarball](https://github.com/alpha-omega/tor-browser-installer/archive/master.tar.gz),
+and extract it:
+
+    $ tar -xzf tor-browser-installer-master.tar.gz
+
+## Usage
+
+Simply run the script **as your normal user** (do not move the script out of its
+folder, or else it won't work):
+
+Give execute permission:
+
+    $ chmod +x tor-browser-installer.sh
+
+Run the script:
+
+    $ ./tor-browser-installer.sh
+
+And follow the instructions. On the first run, you'll be asked for your
+preferred language.
+
+(The script will _only_ use root privileges when installing/uninstalling the
+files).
+
+### GPG
+
+It's recommended to import the GPG key that signs the Tor Browser Bundle before
+installing it. (See the [Tor
+website](https://www.torproject.org/docs/verifying-signatures.html.en) for more
+information).
+
+As of now, [Erinn
+Clark](http://pgp.mit.edu:11371/pks/lookup?search=+0x63FEE659&op=index) signs
+the Tor Browser Bundle. You can import her public key (0x63FEE659) with the
+following command:
+
+    $ gpg --recv-keys 416F061063FEE659
+
+And compare the fingerprint with the one given at the Tor website:
+
+    $ gpg --fingerprint 416F061063FEE659
+
+The script will automatically look for the public key, and use it to verify the
+tarball.
+
+## Updating
+
+There isn't an auto-update feature, obviously, but if you use the default [Tor
+homepage](https://check.torproject.org/), it will let you know when a new
+version is available. Simply run the installer again, and—if needed—restart the
+Tor Browser.
